@@ -1,0 +1,55 @@
+{{> sitehead }}
+
+
+
+<body id="inner_page">
+
+  {{> sitenav}}
+  {{{body}}}
+  {{!-- <div class="container">
+  </div> --}}
+
+  {{!-- <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a> --}}
+  {{#if error}}
+  <div class="toast error">
+    <div class="card bg-danger text-white">
+      <button class="exit" onclick="exitToast(0)"></button>
+      <div class="card-body">{{error}}</div>
+    </div>
+  </div>
+  {{/if}}
+  {{#if success}}
+  <div class="toast ">
+    <div class="card bg-success text-white">
+      <button class="exit" onclick="exitToast(0)"></button>
+      <div class="card-body">{{success}}</div>
+    </div>
+  </div>
+  {{/if}}
+  {{> sitefooter}}
+  {{> sitescripts}}
+
+  <script>
+    function exitToast(time) {
+      let toast = document.querySelectorAll(".toast")
+      let index = 0
+      toast.forEach((el) => {
+        if (index == 0) {
+          setTimeout(() => {
+            el.classList.add('hide')
+          }, time);
+        } else {
+          setTimeout(() => {
+            el.classList.add('hide')
+          }, time + 500);
+        }
+        index++
+      })
+    }
+    exitToast(3000)
+  </script>
+</body>
+
+</html>
