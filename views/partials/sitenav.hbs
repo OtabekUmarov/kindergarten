@@ -25,16 +25,35 @@
                         <a href="/contact" class="nav-item nav-link {{#if isContact}} active {{/if}}">Contact</a>
                     
                 </div>
-                {{!-- {{#if error}}
-                    {{error}}
-                {{/if}} --}}
-                <button class="btn btn-primary px-4" id="auth">Join Class</button>
+                {{#if isUser}}
+                    <a href="/team" class="btn btn-primary px-4">Kirish</a>
+                {{else}}                
+                    <button class="btn btn-primary px-4" id="auth">Kirish</button>
+                {{/if}}
             </div>
         </nav>
     </div>
-<div class="modal1">
+<div class="modal1 login">
     <div class="modal_box">
         <div class="modal_exit"></div>
+        <form action="/admin/auth/user/login" method="post">
+        <input type="hidden" name="_csrf" value="{{csrf}}">
+            <div class="form-group">
+                <label for="exampleInputPassword1">Telefon raqam</label>
+                <input type="number" name="phone" class="form-control" id="exampleInputPassword1" placeholder="Telefon raqam">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Kiritish</button>
+            <p class="btn text-center w-100 mt-2" id="regbtn">Ro'yhatdan o'tish</p>
+        </form>
+    </div>
+</div>
+<div class="modal1 reg">
+    <div class="modal_box">
+        <div class="modal_exit exit1"></div>
         <form action="/admin/auth/reg" method="post">
         <input type="hidden" name="_csrf" value="{{csrf}}">
             <div class="form-group">
@@ -57,13 +76,29 @@
         </form>
     </div>
 </div>
+{{#if error}}
+    <div class="toast1 alert alert-warning text-center" role="alert">{{error}}</div>
+{{/if}}
+{{#if success}}
+    <div class="toast1 alert alert-warning text-center" role="alert">{{success}}</div>
+{{/if}}
 <script>
     let auth = document.getElementById('auth');
+    let regbtn = document.getElementById('regbtn');
     auth.addEventListener('click', function(){
-        document.querySelector('.modal1').classList.add('active');
+        document.querySelector('.modal1.login').classList.add('active');
     })
     let exit = document.querySelector('.modal_exit');
     exit.addEventListener('click', function(){
-        document.querySelector('.modal1').classList.remove('active');
+        document.querySelector('.modal1.login').classList.remove('active');
     })
+    let exit1 = document.querySelector('.modal_exit.exit1');
+    exit1.addEventListener('click', function(){
+        document.querySelector('.modal1.reg').classList.remove('active');
+    })
+    regbtn.addEventListener('click', function(){
+        document.querySelector('.modal1.login').classList.remove('active');
+        document.querySelector('.modal1.reg').classList.add('active');
+    })
+   
 </script>

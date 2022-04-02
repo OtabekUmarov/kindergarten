@@ -12,3 +12,12 @@
 
 <!-- Template Javascript -->
 <script src="/js/main.js"></script>
+
+<script>
+   let toasts = document.querySelectorAll('.toast1')
+    toasts.forEach(el => {
+        setTimeout(() => {
+            el.classList.add('hide')
+        }, 5000);
+    })
+</script>

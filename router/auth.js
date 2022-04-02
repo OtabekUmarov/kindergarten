@@ -47,7 +47,6 @@ router.post('/reg', async (req, res) => {
         lname,
         password,
     } = req.body
-    console.log(req.body)
     const reallyMen = await User.findOne({
         phone
     })
@@ -69,7 +68,7 @@ router.post('/reg', async (req, res) => {
         //     subject: 'Ro`yhatdan o`tildi',
         //     html: `<h1>Hurmatli ${name}, siz tizimda ro'yhatdan o'tdingiz!</h1>`
         // });
-
+        req.session.isUser = true
         req.flash('success', 'Ro`yhatdan muvaffaqiyatli o`tildi!')
         res.redirect('/')
 
@@ -114,6 +113,40 @@ router.post('/login', async (req, res) => {
     } else {
         req.flash('error', 'Username yoki parol noto\'gri kiritildi')
         res.redirect('/admin/auth/login')
+    }
+})
+router.post('/user/login', async (req, res) => {
+    const {
+        phone,
+        password
+    } = req.body
+    const maybeUser = await User.findOne({
+        phone
+    })
+    if (maybeUser) {
+        const comparePass = await bcrypt.compare(password, maybeUser.password)
+        if (comparePass) {
+            // req.session.user = maybeUser
+            req.session.isUser = true
+            req.flash('success', 'Tizimga muvaffaqiyatli kirdingiz')
+            req.session.save((err) => {
+                if (err) throw err
+                else res.redirect('/')
+            })
+        } else {
+            req.flash('error', 'Mahfiy kalit noto\'gri kiritildi')
+            res.redirect('/')
+        }
+    // if (name == "admin" && password == "123123d.") {
+    //     req.session.user = "admin"
+    //     req.session.isAuthed = true
+    //     req.session.save((err) => {
+    //         if (err) throw err
+    //         else res.redirect('/admin')
+    //     })
+    } else {
+        req.flash('error', 'Telefon raqam yoki parol noto\'gri kiritildi')
+        res.redirect('/')
     }
 })
 

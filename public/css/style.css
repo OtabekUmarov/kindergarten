@@ -9918,3 +9918,12 @@ a.text-dark:hover, a.text-dark:focus {
 .modal_exit::before {
   transform: rotate(45deg);
 }
+.alert.toast1 {
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+  z-index: 9999;
+}
+.alert.toast1.hide {
+  display: none;
+}
