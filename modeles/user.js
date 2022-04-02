@@ -6,12 +6,11 @@ const user = new Schema({
         type: String,
         required: true,
     },
-    email: { 
-        type: String, 
-        required: true 
+    phone: {
+        type: String,
+        required: true,
     },
     resetToken: String,
     resetTokenExp: Date,
-    img: String,
 })
 module.exports = model('User',user)

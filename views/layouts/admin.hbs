@@ -1,12 +1,17 @@
 {{> head }}
 
 <body>
-    <div class="wrapper">
+    <div class="layout-wrapper layout-content-navbar">
+      <div class="layout-container">
         {{> adminnav}}
-        <main class="main">
+            <div class="layout-page">
             {{> admintop}}
-            {{{body}}}
-        </main>
+                <div class="content-wrapper">
+                    {{{body}}}
+                </div>
+            </div>
+      </div>
+    </div>
     </div>
     {{> scripts}}
 </body>

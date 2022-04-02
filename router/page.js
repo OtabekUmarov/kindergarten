@@ -2,7 +2,7 @@ const {
     Router
 } = require('express')
 const router = Router()
-
+const auth = require('../middleware/auth')
 
 
 
@@ -52,6 +52,13 @@ router.get('/contact', (req, res) => {
         title: 'Contact',
         layout: "site",
         isContact: true
+    })
+})
+router.get('/admin', auth,(req, res) => {
+    res.render('admin', {
+        title: 'Contact',
+        layout: "admin",
+        isAdmin: true
     })
 })
 
