@@ -2,49 +2,76 @@
   <div class="card">
     <div class="d-flex justify-content-between align-items-center mt-3">
       <h5 class="card-header">{{title}}</h5>
-      {{!-- <div>
-          <label for="formFile" class="form-label">Gallereya kiritish</label>
-          <input class="form-control" type="file" id="formFile">
-        </div> --}}
-      <button type="button" id="modalBtn" style="height: 40px;" class="mx-3 btn btn-primary" >
-        Launch modal
+      <button type="button" id="modalBtn" style="height: 40px;" class="mx-3 btn btn-primary">
+        Qo'shish
       </button>
+    </div>
+    <div class="container">
+      <div class="row mb-4">
+      {{#each gallery}}
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12">
+          <div class="card">
+            <a href="/admin/gallery/delete/{{_id}}" class="gallery-del">
+            <i class="bx bx-trash me-1"></i></a>
+            <img class="card-img-top" src="/{{img}}" alt="Gallery image">
+            <div class="card-body">
+              <h5 class="card-title">{{type}}</h5>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    </div>
     </div>
   </div>
 </div>
-<div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalCenterTitle">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col mb-3">
-            <label for="nameWithTitle" class="form-label">Name</label>
-            <input type="text" id="nameWithTitle" class="form-control" placeholder="Enter Name" />
+<div class="modal">
+  <div class="modal-dialog">
+    <form action="/admin/gallery" method="post" enctype="multipart/form-data">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Galareya qo'shish</h5>
+          <button type="button" class="close">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <input type="hidden" name="_csrf" value="{{csrf}}" />
+            <label for="defaultSelect" class="form-label">Tipini tanlang</label>
+            <select id="defaultSelect" name="type" class="form-select">
+              <option>Tipni tanlang</option>
+              <option value="*">Barchasi</option>
+              <option value="first">Playing</option>
+              <option value="second">Drawing</option>
+              <option value="third">Reading</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="formFile" class="form-label">Gallereya kiritish</label>
+            <input class="form-control" name="img" type="file" id="formFile">
           </div>
         </div>
-        <div class="row g-2">
-          <div class="col mb-0">
-            <label for="emailWithTitle" class="form-label">Email</label>
-            <input type="text" id="emailWithTitle" class="form-control" placeholder="xxxx@xxx.xx" />
-          </div>
-          <div class="col mb-0">
-            <label for="dobWithTitle" class="form-label">DOB</label>
-            <input type="text" id="dobWithTitle" class="form-control" placeholder="DD / MM / YY" />
-          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal()">Bekor qilish</button>
+          <button type="submit" class="btn btn-primary">Saqlash</button>
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-          Close
-        </button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
+    </form>
   </div>
 </div>
 
-<script src="/assets/js/ui-modals.js"></script>
+<script>
+  let modal = document.querySelector('.modal');
+  let modalBtn = document.querySelector('#modalBtn');
+  let closeBtn = document.querySelector('.close');
+  modalBtn.addEventListener('click', () => {
+    modal.classList.add('show');
+  });
+  closeBtn.addEventListener('click', () => {
+    closeModal();
+  });
+
+  function closeModal() {
+    modal.classList.remove('show');
+  }
+</script>

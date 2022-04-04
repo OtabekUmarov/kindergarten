@@ -4,6 +4,10 @@ const gallery = new Schema({
     type: {
       type: String,
       default: '*'
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now
     }
 })
 module.exports = model('Gallery',gallery)

@@ -3,6 +3,7 @@ const {
 } = require('express')
 const router = Router()
 const auth = require('../middleware/auth')
+const Gallery = require('../modeles/gallery')
 
 
 
@@ -40,11 +41,13 @@ router.get('/team', (req, res) => {
         isTeam: true
     })
 })
-router.get('/gallery', (req, res) => {
+router.get('/gallery',async (req, res) => {
+    let gallery = await Gallery.find().lean()
     res.render('gallery', {
         title: 'Gallery',
         layout: "site",
-        isGallery: true
+        isGallery: true,
+        gallery
     })
 })
 router.get('/contact', (req, res) => {

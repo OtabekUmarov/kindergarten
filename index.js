@@ -29,7 +29,7 @@ app.use(express.urlencoded({
     extended: true
 }))
 app.use(express.static(__dirname + '/public'))
-app.use('/images', express.static('images')) // !
+app.use('/media', express.static('media')) // !
 
 const store = new MongoStore({
     collection: 'session',
