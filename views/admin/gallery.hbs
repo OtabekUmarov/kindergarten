@@ -39,8 +39,8 @@
             <input type="hidden" name="_csrf" value="{{csrf}}" />
             <label for="defaultSelect" class="form-label">Tipini tanlang</label>
             <select id="defaultSelect" name="type" class="form-select">
-              <option>Tipni tanlang</option>
-              <option value="*">Barchasi</option>
+              <option disabled>Tipni tanlang</option>
+              {{!-- <option value="*">Barchasi</option> --}}
               <option value="first">Playing</option>
               <option value="second">Drawing</option>
               <option value="third">Reading</option>
