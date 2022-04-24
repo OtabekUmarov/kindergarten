@@ -1,0 +1,82 @@
+<div class="container-xxl flex-grow-1 container-p-y">
+  <div class="card">
+    <div class="d-flex justify-content-between align-items-center mt-3">
+      <h5 class="card-header">{{title}}</h5>
+      <button type="button" id="modalBtn" style="height: 40px;" class="mx-3 btn btn-primary">
+        Qo'shish
+      </button>
+    </div>
+    <div class="container">
+    <div class="card-body">
+      <div class="table-responsive text-nowrap">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Nomi</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each menu}}
+            <tr>
+              <td>
+                <strong>{{title}}</strong>
+              </td>
+              <td>
+                <a href="/admin/gallery/menu/delete/{{_id}}" >
+                <i class="bx bx-trash me-1"></i></a>
+                <a href="/admin/gallery/photos/{{_id}}">
+                Rasm qo'shish
+                </a>
+              </td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    </div>
+    </div>
+  </div>
+</div>
+<div class="modal modal2">
+  <div class="modal-dialog">
+    <form action="/admin/gallery/menu" method="post" enctype="multipart/form-data">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Galareya
+            menu qo'shish</h5>
+          <button type="button" class="close close2">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <input type="hidden" name="_csrf" value="{{csrf}}" />
+             <label for="formFile" class="form-label">Menu kiriting</label>
+            <input class="form-control" name="title" type="text" >
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal2()">Bekor qilish</button>
+          <button type="submit" class="btn btn-primary">Saqlash</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  let modal = document.querySelector('.modal2');
+  let modalBtn = document.querySelector('#modalBtn');
+  let closeBtn = document.querySelector('.close2');
+  modalBtn.addEventListener('click', () => {
+    modal.classList.add('show');
+  });
+  closeBtn.addEventListener('click', () => {
+    closeModal2();
+  });
+  function closeModal2() {
+    modal.classList.remove('show');
+  }
+</script>

@@ -9927,3 +9927,6 @@ a.text-dark:hover, a.text-dark:focus {
 .alert.toast1.hide {
   display: none;
 }
+.dropdown:hover .dropdown-menu {
+  display: block !important;
+}

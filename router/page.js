@@ -4,6 +4,10 @@ const {
 const router = Router()
 const auth = require('../middleware/auth')
 const Gallery = require('../modeles/gallery')
+const GalleryMenu = require('../modeles/gallerymenu')
+const GallerySubMenu = require('../modeles/gallerysubmenu')
+const Message = require('../modeles/message')
+
 
 
 
@@ -34,20 +38,23 @@ router.get('/class', (req, res) => {
     })
 })
 
-router.get('/team', (req, res) => {
+router.get('/team', async (req, res) => {
+    let menu = await GalleryMenu.find().lean()
     res.render('team', {
         title: 'Teachers',
         layout: "site",
-        isTeam: true
+        isTeam: true,menu
     })
 })
-router.get('/gallery',async (req, res) => {
-    let gallery = await Gallery.find().lean()
+router.get('/gallery/:id',async (req, res) => {
+    let gallery = await Gallery.find({menu:req.params.id}).lean()
+    let menu = await GalleryMenu.find().lean()
+    let submenu = await GallerySubMenu.find({menuId:req.params.id}).lean()
     res.render('gallery', {
         title: 'Gallery',
         layout: "site",
         isGallery: true,
-        gallery
+        gallery, menu,submenu
     })
 })
 router.get('/contact', (req, res) => {
@@ -65,6 +72,13 @@ router.get('/admin', auth,(req, res) => {
     })
 })
 
+
+router.post('/contact/message', async (req, res) => {
+    const { fullname,email,phone,message } = req.body
+    const messages = await new Message({fullname,email,phone,message})
+    await messages.save()
+    res.redirect('/contact')
+  })
 
 
 
