@@ -22,29 +22,23 @@
             <div class="row">
                 <div class="col-lg-7 mb-5">
                     <div class="contact-form">
-                        {{!-- <div id="success"></div> --}}
-                        <form name="sentMessage" id="contactForm" novalidate="novalidate"
-                         action="/contact/message" method="post">
-                            <div class="control-group">
+                        <form 
+                         action="/messages" method="post" >
+                            <div class="control-group mb-3">
                                 <input type="hidden" name="_csrf" value="{{csrf}}" />
-                                <input type="text" class="form-control" id="name" placeholder="Ism familiya" required="required" name="fullname" data-validation-required-message="Iltimos ism familiyangizni kiriting" />
-                                <p class="help-block text-danger"></p>
+                                <input type="text" class="form-control" id="name" placeholder="Ism familiya" required="required" name="fullname" />
                             </div>
-                            <div class="control-group">
+                            <div class="control-group mb-3">
                                 <input type="email" class="form-control" name="email" placeholder="Emailingiz" />
-                                <p class="help-block text-danger"></p>
                             </div>
-                            <div class="control-group">
-                                <input type="text" class="form-control" id="subject" name="phone" placeholder="Telefon raqam" required="required" data-validation-required-message="Iltimos telefon raqamingizni kiriting" />
-                                <p class="help-block text-danger"></p>
+                            <div class="control-group mb-3">
+                                <input type="text" class="form-control" id="subject" name="phone" placeholder="Telefon raqam" required="required" />
                             </div>
-                            <div class="control-group">
-                                <textarea class="form-control" rows="6" name="message" id="message" placeholder="Habar" required="required" data-validation-required-message="Iltimos habar kiriting"></textarea>
-                                <p class="help-block text-danger"></p>
+                            <div class="control-group mb-3">
+                                <textarea class="form-control" rows="6" name="message" id="message" placeholder="Habar" required="required" ></textarea>
                             </div>
                             <div>
                                 <button class="btn btn-primary py-2 px-4" type="submit" >Yuborish</button>
-                                {{!-- id="sendMessageButton" --}}
                             </div>
                         </form>
                     </div>

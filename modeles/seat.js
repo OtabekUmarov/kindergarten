@@ -1,12 +1,14 @@
 const {Schema, model} = require('mongoose')
-const message = new Schema({
+const seat = new Schema({
     createdAt: {
       type: Date,
       default: Date.now
     },
     fullname: String,
-    email: String,
     phone: String,
-    message: String,
+    classId: {
+        type: Schema.Types.ObjectId,
+        ref: 'Classes'
+    },
 })
-module.exports = model('Message',message)
+module.exports = model('Seat',seat)

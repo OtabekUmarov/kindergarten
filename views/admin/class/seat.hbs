@@ -1,0 +1,38 @@
+<div class="container-xxl flex-grow-1 container-p-y">
+  <div class="card">
+    <h5 class="card-header">{{title}}</h5>
+    <div class="card-body">
+      <div class="table-responsive text-nowrap">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Ismi</th>
+              <th>Telefon raqami</th>
+              <th>Class nomi</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each seat}}
+            <tr>
+              <td>
+                <strong>{{fullname}}</strong>
+              </td>
+              <td>
+                {{phone}}
+              </td>
+              <td>
+                {{classId.title}}
+              </td>
+              <td>
+                <a class="btn" style="padding:0" href="/admin/class/seat/delete/{{_id}}" >
+                <i class="bx bx-trash me-1"></i></a>
+              </td> 
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

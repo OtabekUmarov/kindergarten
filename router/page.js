@@ -7,34 +7,40 @@ const Gallery = require('../modeles/gallery')
 const GalleryMenu = require('../modeles/gallerymenu')
 const GallerySubMenu = require('../modeles/gallerysubmenu')
 const Message = require('../modeles/message')
+const Classes = require('../modeles/classes')
+const Seat = require('../modeles/seat')
 
 
 
 
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
+    let menu = await GalleryMenu.find().lean()
     res.render('index', {
         title: 'Home',
         layout: "site",
         success: req.flash('success'),
         error: req.flash('error'),
-        isHome: true
+        isHome: true, menu
     })
 })
 
-router.get('/about', (req, res) => {
+router.get('/about',async (req, res) => {
+    let menu = await GalleryMenu.find().lean()
     res.render('about', {
         title: 'About',
         layout: "site",
-        isAbout: true
+        isAbout: true, menu
     })
 })
 
-router.get('/class', (req, res) => {
+router.get('/class', async(req, res) => {
+    let menu = await GalleryMenu.find().lean()
+    let classes = await Classes.find().lean()
     res.render('class', {
         title: 'Classes',
         layout: "site",
-        isClass: true
+        isClass: true,menu,classes
     })
 })
 
@@ -57,30 +63,35 @@ router.get('/gallery/:id',async (req, res) => {
         gallery, menu,submenu
     })
 })
-router.get('/contact', (req, res) => {
+router.get('/contact', async(req, res) => {
+    let menu = await GalleryMenu.find().lean()
     res.render('contact', {
         title: 'Contact',
         layout: "site",
-        isContact: true
+        isContact: true,menu
     })
 })
 router.get('/admin', auth,(req, res) => {
     res.render('admin', {
-        title: 'Contact',
+        title: 'Dashboard',
         layout: "admin",
         isAdmin: true
     })
 })
 
 
-router.post('/contact/message', async (req, res) => {
+router.post('/messages', async (req, res) => {
+    
     const { fullname,email,phone,message } = req.body
     const messages = await new Message({fullname,email,phone,message})
     await messages.save()
     res.redirect('/contact')
   })
-
-
-
+router.post('/class/seat', async (req, res) => {
+    const { fullname,phone,classId } = req.body
+    const seat = await new Seat({fullname,phone,classId})
+    await seat.save()
+    res.redirect('/class')
+  })
 
 module.exports = router
