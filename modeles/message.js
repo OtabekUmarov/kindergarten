@@ -7,6 +7,10 @@ const message = new Schema({
     fullname: String,
     email: String,
     phone: String,
+    status:{
+      type: Boolean,
+      default:false
+    },
     message: String,
 })
 module.exports = model('Message',message)

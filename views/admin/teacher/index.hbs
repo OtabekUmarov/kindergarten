@@ -1,0 +1,114 @@
+<div class="container-xxl flex-grow-1 container-p-y">
+  <div class="card">
+    <div class="d-flex justify-content-between align-items-center mt-3">
+      <h5 class="card-header">{{title}}</h5>
+      <button type="button" id="modalBtn" style="height: 40px;" class="mx-3 btn btn-primary">
+        Qo'shish
+      </button>
+    </div>
+    <div class="container">
+    <div class="card-body">
+      <div class="table-responsive text-nowrap">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>FISH</th>
+              <th>Qaysi fandan</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each teachers}}
+            <tr>
+              <td>
+                <img src="/{{img}}" alt="" width="50" style="border-radius:50%">
+                <strong>{{fullname}}</strong>
+              </td>
+              <td>
+                {{type}}
+              </td>
+              <td>
+                {{!-- <button class="btn" style="padding:0" onclick="openShowModal('{{_id}}')">
+                <i class="bx bx-show me-1"></i></button> --}}
+                <a class="btn" style="padding:0" href="/admin/teacher/delete/{{_id}}" >
+                <i class="bx bx-trash me-1"></i></a>
+              </td> 
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal modal2">
+  <div class="modal-dialog">
+    <form action="/admin/teacher" method="post" enctype="multipart/form-data">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Class qo'shish</h5>
+          <button type="button" class="close close2">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-12">
+              <div class="mb-3">
+                <input type="hidden" name="_csrf" value="{{csrf}}" />
+                <label for="formFile" class="form-label">Nomini kiriting</label>
+                <input class="form-control" name="fullname" type="text" >
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="mb-3">
+                <label for="formFile" class="form-label">Qaysi fandan dars berishi  </label>
+                <input class="form-control" name="type" type="text" >
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="formFile" class="form-label">Telefon raqami</label>
+                <input class="form-control" name="phone" type="text" >
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="formFile" class="form-label">Telegram manzil</label>
+                <input class="form-control" name="telegram" type="text" >
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-group mb-3">
+                  <label for="formFile" class="form-label">Rasm kiriting</label>
+                <input class="form-control" name="img" type="file">
+              </div>  
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal2()">Bekor qilish</button>
+          <button type="submit" class="btn btn-primary">Saqlash</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  let modal = document.querySelector('.modal2');
+  let modalBtn = document.querySelector('#modalBtn');
+  let closeBtn = document.querySelector('.close2');
+  modalBtn.addEventListener('click', () => {
+    modal.classList.add('show');
+  });
+  closeBtn.addEventListener('click', () => {
+    closeModal2();
+  });
+  function closeModal2() {
+    modal.classList.remove('show');
+  }
+</script>

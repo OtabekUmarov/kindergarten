@@ -8,6 +8,7 @@ const GalleryMenu = require('../modeles/gallerymenu')
 const GallerySubMenu = require('../modeles/gallerysubmenu')
 const Message = require('../modeles/message')
 const Classes = require('../modeles/classes')
+const Teacher = require('../modeles/teacher')
 const Seat = require('../modeles/seat')
 
 
@@ -16,21 +17,30 @@ const Seat = require('../modeles/seat')
 
 router.get('/', async (req, res) => {
     let menu = await GalleryMenu.find().lean()
+    let teacher = await Teacher.find().lean()
+    let messages = await Message.find({status:true}).lean()
+    messages = messages.map(message => {
+        return{
+            ...message,
+            createdAt: message.createdAt.toLocaleString(),
+        } 
+    })
     res.render('index', {
         title: 'Home',
         layout: "site",
         success: req.flash('success'),
         error: req.flash('error'),
-        isHome: true, menu
+        isHome: true, menu, teacher, messages
     })
 })
 
 router.get('/about',async (req, res) => {
     let menu = await GalleryMenu.find().lean()
+    let teacher = await Teacher.find().lean()
     res.render('about', {
         title: 'About',
         layout: "site",
-        isAbout: true, menu
+        isAbout: true, menu, teacher
     })
 })
 
@@ -46,10 +56,18 @@ router.get('/class', async(req, res) => {
 
 router.get('/team', async (req, res) => {
     let menu = await GalleryMenu.find().lean()
+    let teacher = await Teacher.find().lean()
+    let messages = await Message.find({status:true}).lean()
+    messages = messages.map(message => {
+        return{
+            ...message,
+            createdAt: message.createdAt.toLocaleString(),
+        }
+    })
     res.render('team', {
         title: 'Teachers',
         layout: "site",
-        isTeam: true,menu
+        isTeam: true,menu,teacher,messages
     })
 })
 router.get('/gallery/:id',async (req, res) => {

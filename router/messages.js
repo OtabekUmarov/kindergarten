@@ -17,6 +17,21 @@ router.get('/',async (req, res) => {
       messages
   })
 })
+router.get('/delete/:id/', async (req, res) => {
+  let _id = req.params.id
+  await Messages.findByIdAndDelete(
+    _id
+  )
+  res.redirect(`/admin/messages`)
+})
+
+router.get('/edit/:id/', async (req, res) => {
+  let _id = req.params.id
+  let message = {status: true}
+  await Messages.findByIdAndUpdate({_id},message)
+  res.redirect(`/admin/messages`)
+})
+
 
 
 module.exports = router
