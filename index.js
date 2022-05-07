@@ -58,13 +58,13 @@ app.use(routers)
 // app.all('*', (req, res) => {
 //     res.redirect("/");
 // });
-
+let PORT = process.env.PORT || 3000
 async function dev() {
     try {
         await mongoose.connect(keys.MONGODB_URI, {
             useNewUrlParser: true
         })
-        app.listen(process.env.PORT,()=>{
+        app.listen(PORT,()=>{
             console.log('Server is running')
         })
         // app.listen('3000', () => {
