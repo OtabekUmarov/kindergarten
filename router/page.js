@@ -19,6 +19,8 @@ router.get('/', async (req, res) => {
     let menu = await GalleryMenu.find().lean()
     let teacher = await Teacher.find().lean()
     let messages = await Message.find({status:true}).lean()
+    let classes = await Classes.find().lean()
+
     messages = messages.map(message => {
         return{
             ...message,
@@ -30,7 +32,7 @@ router.get('/', async (req, res) => {
         layout: "site",
         success: req.flash('success'),
         error: req.flash('error'),
-        isHome: true, menu, teacher, messages
+        isHome: true, menu, teacher, messages, classes
     })
 })
 
