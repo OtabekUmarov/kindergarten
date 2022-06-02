@@ -31,12 +31,15 @@ app.use(express.urlencoded({
 app.use(express.static(__dirname + '/public'))
 app.use('/media', express.static('media')) // !
 
+const MONGODB_URI = 'mongodb://127.0.0.1:27017/kindergarder'
+
 const store = new MongoStore({
     collection: 'session',
-    uri: keys.MONGODB_URI
+    uri: MONGODB_URI
 })
+// secret: keys.SESSION_SECRET,
 app.use(session({
-    secret: keys.SESSION_SECRET,
+    secret: 'saasasa asasas',
     saveUninitialized: false,
     resave: false,
     cookie: {
@@ -58,10 +61,11 @@ app.use(routers)
 // app.all('*', (req, res) => {
 //     res.redirect("/");
 // });
-let PORT = process.env.PORT || 3000
+// let PORT = process.env.PORT || 3000
+let PORT =  3000
 async function dev() {
     try {
-        await mongoose.connect(keys.MONGODB_URI, {
+        await mongoose.connect(MONGODB_URI, {
             useNewUrlParser: true
         })
         app.listen(PORT,()=>{
