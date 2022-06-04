@@ -32,11 +32,11 @@ app.use(express.urlencoded({
 app.use(express.static('public'))
 app.use('/media', express.static('media')) // !
 
-const MONGODB_URI = 'mongodb://127.0.0.1:27017/kindergarder'
+// const MONGODB_URI = 'mongodb://127.0.0.1:27017/kindergarder'
 
 const store = new MongoStore({
     collection: 'session',
-    uri: MONGODB_URI
+    uri: keys.MONGODB_URI
 })
 // secret: keys.SESSION_SECRET,
 app.use(session({
