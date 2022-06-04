@@ -66,7 +66,7 @@ app.use(routers)
 let PORT =  3000
 async function dev() {
     try {
-        await mongoose.connect(MONGODB_URI, {
+        await mongoose.connect(keys.MONGODB_URI, {
             useNewUrlParser: true
         })
         app.listen(PORT,()=>{
