@@ -32,11 +32,11 @@ app.use(express.urlencoded({
 app.use(express.static('public'))
 app.use('/media', express.static('media')) // !
 
-// const MONGODB_URI = 'mongodb://127.0.0.1:27017/kindergarder'
+const MONGODB_URI = 'mongodb://127.0.0.1:27017/kindergarder'
 
 const store = new MongoStore({
     collection: 'session',
-    uri: keys.MONGODB_URI
+    uri: MONGODB_URI
 })
 // secret: keys.SESSION_SECRET,
 app.use(session({
@@ -66,7 +66,7 @@ app.use(routers)
 let PORT =  3000
 async function dev() {
     try {
-        await mongoose.connect(keys.MONGODB_URI, {
+        await mongoose.connect(MONGODB_URI, {
             useNewUrlParser: true
         })
         app.listen(PORT,()=>{
