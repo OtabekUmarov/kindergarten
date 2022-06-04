@@ -18,7 +18,7 @@ const keys = require('./keys/pro')
 const app = express()
 const hbs = exphbs.create({
     defaultLayout: 'admin',
-    extname: 'hbs'
+    extname: '.hbs'
 })
 
 
@@ -28,7 +28,8 @@ app.set('views', 'views')
 app.use(express.urlencoded({
     extended: true
 }))
-app.use(express.static(__dirname + '/public'))
+// app.use(express.static(__dirname + '/public'))
+app.use(express.static('public'))
 app.use('/media', express.static('media')) // !
 
 const MONGODB_URI = 'mongodb://127.0.0.1:27017/kindergarder'
@@ -39,12 +40,12 @@ const store = new MongoStore({
 })
 // secret: keys.SESSION_SECRET,
 app.use(session({
-    secret: 'saasasa asasas',
+    secret: 'saasasa asasass safgghthyy',
     saveUninitialized: false,
-    resave: false,
+    resave: true,
     cookie: {
         // maxAge: 60 * 60 * 60
-        maxAge: 60 * 60 * 60 * 10
+        maxAge: 500 * 60 * 60 * 10
     },
     store
 }))
