@@ -9,6 +9,7 @@
 // alijon.abdurasulov@bk.ru
 // Alikhan0606    HbH6tX8D0rZUyb2Y
 
+// heroku Ali.1902525 
 
 // module.exports = {
 //     BASE_URL: 'localhost',
