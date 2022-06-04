@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <title>Smart Kids</title>
@@ -27,18 +26,10 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="/css/style.css" rel="stylesheet">
 </head>
-
-
 <body id="inner_page">
 
   {{> sitenav}}
   {{{body}}}
-  {{!-- <div class="container">
-  </div> --}}
-
-  {{!-- <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a> --}}
   {{#if error}}
   <div class="toast error">
     <div class="card bg-danger text-white">
@@ -56,7 +47,33 @@
   </div>
   {{/if}}
   {{> sitefooter}}
-  {{> sitescripts}}
+
+
+
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/jquery.min.js"></script>
+  <script src="/lib/easing/easing.min.js"></script>
+  <script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="/lib/isotope/isotope.pkgd.min.js"></script>
+  <script src="/lib/lightbox/js/lightbox.min.js"></script>
+
+  <!-- Contact Javascript File -->
+  <script src="/mail/jqBootstrapValidation.min.js"></script>
+  <script src="/mail/contact.js"></script>
+
+  <!-- Template Javascript -->
+  <script src="/js/main.js"></script>
+  <script>
+    let toasts = document.querySelectorAll('.toast1')
+      toasts.forEach(el => {
+          setTimeout(() => {
+              el.classList.add('hide')
+          }, 5000);
+      })
+  </script>
+
+
 
   <script>
     function exitToast(time) {
@@ -76,6 +93,10 @@
       })
     }
     exitToast(3000)
+  </script>
+
+  <script>
+    
   </script>
 </body>
 

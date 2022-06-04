@@ -9930,3 +9930,19 @@ a.text-dark:hover, a.text-dark:focus {
 .dropdown:hover .dropdown-menu {
   display: block !important;
 }
+
+@media (max-width:991px) {
+  .navbar-nav {
+    text-align: center;
+}
+.navbar-collapse .btn-primary {
+  display: block;
+  margin: 0 auto;
+}
+}
+@media (max-width:575px) {
+  .navbar-light .navbar-brand {
+    font-size: 28px !important;
+  }
+}
+
