@@ -5,8 +5,6 @@ const session = require('express-session')
 const csrf = require('csurf')
 const MongoStore = require('connect-mongodb-session')(session)
 const flash = require('connect-flash') // !
-const helmet = require('helmet')
-const compression = require('compression')
 // Routerlar
 const routers = require('./routers')
 
@@ -54,8 +52,6 @@ app.use(fileMiddleware.single('img'))
 app.use(csrf())
 app.use(flash()) // !
 app.use(varMid)
-app.use(helmet())
-app.use(compression())
 
 app.use(routers)
 
@@ -63,14 +59,14 @@ app.use(routers)
 //     res.redirect("/");
 // });
 // let PORT = process.env.PORT || 3000
-let PORT =  3000
+let PORT =  3004
 async function dev() {
     try {
         await mongoose.connect(MONGODB_URI, {
             useNewUrlParser: true
         })
         app.listen(PORT,()=>{
-            console.log('Server is running')
+            console.log(`Server is running ${PORT}`)
         })
         // app.listen('3000', () => {
         //     console.log('Server is running')
