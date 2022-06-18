@@ -72,6 +72,15 @@ router.get('/team', async (req, res) => {
         isTeam: true,menu,teacher,messages
     })
 })
+router.get('/profile/:id', async (req, res) => {
+
+    let menu = await GalleryMenu.find().lean()
+    res.render('profile', {
+        title: 'Shaxsiy kabinet',
+        layout: "site",
+        menu
+    })
+})
 router.get('/gallery/:id',async (req, res) => {
     let gallery = await Gallery.find({menu:req.params.id}).lean()
     let menu = await GalleryMenu.find().lean()

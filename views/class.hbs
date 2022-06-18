@@ -23,7 +23,9 @@
             {{#each classes}}
             <div class="col-lg-4 mb-5">
                 <div class="card border-0 bg-light shadow-sm pb-2">
-                    <img class="card-img-top mb-2" src="/{{img}}" alt="">
+                    <div style="height: 250px">
+                        <img style="height: 100%; object-fit: cover" class="card-img-top mb-2" src="/{{img}}" alt="" />
+                    </div>
                     <div class="card-body text-center">
                         <h4 class="card-title">{{title}}</h4>
                         <p class="card-text">{{text}}</p>
@@ -79,22 +81,18 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-7 mb-5 mb-lg-0">
-                <p class="section-title pr-5"><span class="pr-2">Hoziroq joy band qiling</span></p>
-                <h1 class="mb-4">Book A Seat For Your Kid</h1>
-                <p>Invidunt lorem justo sanctus clita. Erat lorem labore ea, justo dolor lorem ipsum ut sed eos,
-                    ipsum et dolor kasd sit ea justo. Erat justo sed sed diam. Ea et erat ut sed diam sea ipsum est
-                    dolor</p>
+                <p class="section-title pr-5"><span class="pr-2">Biz sizga tavsiya etamiz</span></p>
+                <h1 class="mb-4">Smart Kids Xususiy Online MTM afzalliklari </h1>
+                <p>2022 yildan boshlab Respublikamizda birinchilardan bo'lib ochilgan Xususiy Online MTM keng qamrovda ish boshladi. Bolalaringizni sog'lom, ijodkor, tarbiyali, ilmli va aqlli bo'lib yetishishiga hissamiz qo'shilsa biz bundan xursand bo'lamiz, hurmat bilan Smart kids jamoasi</p>
                 <ul class="list-inline m-0">
-                    <li class="py-2"><i class="fa fa-check text-success mr-3"></i>Labore eos amet dolor amet diam</li>
-                    <li class="py-2"><i class="fa fa-check text-success mr-3"></i>Etsea et sit dolor amet ipsum</li>
-                    <li class="py-2"><i class="fa fa-check text-success mr-3"></i>Diam dolor diam elitripsum vero.</li>
+                    <li class="py-2"><i class="fa fa-check text-success mr-3"></i>24 / 7 qo'llab quvvatlash</li>
+                    <li class="py-2"><i class="fa fa-check text-success mr-3"></i>Istalgan vaqtda barcha savollaringizga javob beramiz</li>
                 </ul>
-                <a href="" class="btn btn-primary mt-4 py-2 px-4">Book Now</a>
             </div>
             <div class="col-lg-5">
                 <div class="card border-0">
                     <div class="card-header bg-secondary text-center p-4">
-                        <h1 class="text-white m-0">Hoziroq band qiling</h1>
+                        <h1 class="text-white m-0">Hoziroq ariza qoldiring</h1>
                     </div>
                     <div class="card-body rounded-bottom bg-primary p-5">
                         <form action="/class/seat" method="post">
@@ -118,7 +116,7 @@
                                 </select>
                             </div>
                             <div>
-                                <button class="btn btn-secondary btn-block border-0 py-3" type="submit">Yuborish</button>
+                                <button class="btn btn-secondary btn-block border-0 py-3" type="submit">Ariza qoldiring</button>
                             </div>
                         </form>
                     </div>

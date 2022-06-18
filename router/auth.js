@@ -69,6 +69,12 @@ router.post('/reg', async (req, res) => {
         //     html: `<h1>Hurmatli ${name}, siz tizimda ro'yhatdan o'tdingiz!</h1>`
         // });
         req.session.isUser = true
+        req.session.user = {
+            name,
+            lname,
+            phone,
+            password: hashPass
+        }
         req.flash('success', 'Ro`yhatdan muvaffaqiyatli o`tildi!')
         res.redirect('/')
 
