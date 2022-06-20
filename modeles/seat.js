@@ -9,10 +9,6 @@ const seat = new Schema({
     classId: {
         type: Schema.Types.ObjectId,
         ref: 'Classes'
-    },
-    payment: {
-      type: String,
-      default: 'not_paid'
     }
 })
 module.exports = model('Seat',seat)

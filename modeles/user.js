@@ -10,6 +10,14 @@ const user = new Schema({
         type: String,
         required: true,
     },
+    payment: {
+      type: String,
+      default: 'not_paid'
+    },
+    card: {
+        type: Object,
+        default: {}
+    },
     resetToken: String,
     resetTokenExp: Date,
 })

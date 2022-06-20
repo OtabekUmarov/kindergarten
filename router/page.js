@@ -10,6 +10,7 @@ const Message = require('../modeles/message')
 const Classes = require('../modeles/classes')
 const Teacher = require('../modeles/teacher')
 const Seat = require('../modeles/seat')
+const User = require('../modeles/user')
 
 
 
@@ -73,13 +74,26 @@ router.get('/team', async (req, res) => {
     })
 })
 router.get('/profile/:id', async (req, res) => {
-
     let menu = await GalleryMenu.find().lean()
+    let users = await User.findOne({_id: req.params.id}).lean()
+    users.payment = users.payment == 'not_paid' ? true : false
     res.render('profile', {
         title: 'Shaxsiy kabinet',
         layout: "site",
-        menu
+        success: req.flash('success'),
+        error: req.flash('error'),
+        menu, users, payment: users.payment
     })
+})
+router.post('/user/payment/:id', async (req, res) => {
+    let _id = req.params.id
+    let {price, card} = req.body
+    let users = await User.findOne({_id}).lean()
+    users.payment = 'paid'
+    users.card = {price, card}
+    await User.findByIdAndUpdate(_id, users)
+    req.flash('success', 'To`lov muvaffaqiyatli amalga oshirildi!')
+    res.redirect(`/profile/${_id}`)
 })
 router.get('/gallery/:id',async (req, res) => {
     let gallery = await Gallery.find({menu:req.params.id}).lean()

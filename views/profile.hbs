@@ -13,9 +13,34 @@
   
    <div class="container-fluid pt-5">
        <div class="container">
-           <div class="text-center pb-2">
-               <p class="section-title px-5"><span class="px-2">Bizning o'qituvchilar</span></p>
-               <h1 class="mb-4">O'qituvchilarimiz bilan tanishing</h1>
-           </div>
+            {{#if payment}}
+                <div class="text-center pb-2">
+                    <h2><span class="px-2">
+                        Siz hali to'lov qilmagansiz. Iltimos to'lovni amalga oshiring!
+                        </span>
+                    </h2>
+                </div>
+                <form action="/user/payment/{{users._id}}" method="post">
+                    <input type="hidden" name="_csrf" value="{{csrf}}">
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Karta raqami</label>
+                        <input type="number" name="card" class="form-control" id="exampleInputPassword1" placeholder="Karta raqami">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">To'lov summasi</label>
+                        <input type="number" name="price" class="form-control" id="exampleInputPassword1" placeholder="To'lov summasi">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">To'lov qilish</button>
+                </form>
+            {{else}}
+                 <div class="text-center pb-2">
+                    <h2>
+                        <span class="px-2">
+                        Videolar
+                        </span>
+                    </h2>
+                    <iframe width="80%" height="415" src="https://www.youtube.com/embed/TRepkuJvn0k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            {{/if}}
        </div>
    </div>
