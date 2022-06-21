@@ -89,7 +89,7 @@ router.post('/login', async (req, res) => {
         req.session.isAuthed = true
         req.session.save((err) => {
             if (err) throw err
-            else res.redirect('/admin')
+            else res.redirect('/admin/users')
         })
     } else {
         req.flash('error', 'Username yoki parol noto\'gri kiritildi')

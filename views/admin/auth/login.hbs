@@ -61,23 +61,23 @@
                       </g>
                     </svg>
                   </span>
-                  <span class="app-brand-text demo text-body fw-bolder">Sneat</span>
+                  <span class="app-brand-text demo text-body fw-bolder">Admin</span>
                 </a>
               </div>
               <!-- /Logo -->
-              <h4 class="mb-2">Welcome to Sneat! 👋</h4>
-              <p class="mb-4">Please sign-in to your account and start the adventure</p>
+              <h4 class="mb-2" style="text-align: center;">Hush kelibsiz! 👋</h4>
+              <p class="mb-4">Tizimga kirish uchun iltimos login parolni kiriting</p>
 
               <form id="formAuthentication" class="mb-3"  method="POST" action="/admin/auth/login">
               <input type="hidden" name="_csrf" value="{{csrf}}" />
                 <div class="mb-3">
-                  <label for="email" class="form-label">Username</label>
+                  <label for="email" class="form-label">Login</label>
                   <input
                     type="text"
                     class="form-control"
                     id="email"
                     name="name"
-                    placeholder="Enter your email or username"
+                    placeholder="Login"
                     autofocus
                   />
                 </div>
@@ -98,7 +98,7 @@
                   </div>
                 </div>
                 <div class="mb-3">
-                  <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+                  <button class="btn btn-primary d-grid w-100" type="submit">Kirish</button>
                 </div>
               </form>
               {{#if error}}
