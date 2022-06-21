@@ -10,37 +10,66 @@
        </div>
    </div>
    <!-- Header End -->
-  
-   <div class="container-fluid pt-5">
-       <div class="container">
+<div class="container-fluid pt-5">
+    <div class="container">
             {{#if payment}}
-                <div class="text-center pb-2">
-                    <h2><span class="px-2">
-                        Siz hali to'lov qilmagansiz. Iltimos to'lovni amalga oshiring!
-                        </span>
-                    </h2>
+                <div id="Checkout" class="inline">
+                <h1>Siz hali to'lov qilmagansiz. Iltimos to'lovni amalga oshiring!</h1>
+                <div class="card-row">
+                    <div class="card-img">
+                        <img src="/video/uzcard.jpg" alt="">
+                    </div>
+                    <div class="card-img">
+                        <img src="/video/humo.jpg" alt="">
+                    </div>
                 </div>
-                <form action="/user/payment/{{users._id}}" method="post">
-                    <input type="hidden" name="_csrf" value="{{csrf}}">
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Karta raqami</label>
-                        <input type="number" name="card" class="form-control" id="exampleInputPassword1" placeholder="Karta raqami">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">To'lov summasi</label>
-                        <input type="number" name="price" class="form-control" id="exampleInputPassword1" placeholder="To'lov summasi">
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100">To'lov qilish</button>
-                </form>
+                    <form action="/user/payment" method="post">
+                        <input type="hidden" name="_csrf" value="{{csrf}}">
+                        <div class="form-group">
+                            <label for="PaymentAmount">To'lov summasi</label>
+                            <div class="amount-placeholder">
+                                <span>300 000 so'm</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label or="NameOnCard">To'lov maqsadi</label>
+                            <input id="NameOnCard" name="title" class="form-control" type="text"></input>
+                        </div>
+                        <div class="form-group">
+                            <label for="CreditCardNumber">Karta raqami</label>
+                            <input id="CreditCardNumber" class="null card-image form-control" type="text" name="card"></input>
+                        </div>
+                        <div class="form-group">
+                            <label for="CreditCardNumber">To'lov summasi</label>
+                            <input id="CreditCardNumber" class="null card-image form-control" type="text" name="price"></input>
+                        </div>
+                        <div class="expiry-date-group form-group">
+                            <label for="ExpiryDate">Kartaning amal qilish muddati</label>
+                            <input id="ExpiryDate" class="form-control" type="text" placeholder="MM / YY" maxlength="7"></input>
+                        </div>
+                        <div class="security-code-group form-group">
+                            <label for="SecurityCode">Parolingiz</label>
+                            <div class="input-container" >
+                                <input id="SecurityCode" class="form-control" type="password" ></input>
+                            </div>
+                        </div>
+                        <button id="PayButton" class="btn btn-block btn-success submit-button" type="submit">
+                            <span class="align-middle">To'lov qilish</span>
+                        </button>
+                    </form>
+                </div>
             {{else}}
-                 <div class="text-center pb-2">
+                <div class="text-center pb-2">
                     <h2>
                         <span class="px-2">
                         Videolar
                         </span>
                     </h2>
-                    <iframe width="80%" height="415" src="https://www.youtube.com/embed/TRepkuJvn0k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    {{#each video}}
+                        <h2 style="text-align: left;">{{title}}</h2>
+                        {{{url}}}
+                    {{/each}}
                 </div>
             {{/if}}
-       </div>
-   </div>
+    </div>
+</div>

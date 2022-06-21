@@ -43,7 +43,7 @@ app.use(session({
     resave: true,
     cookie: {
         // maxAge: 60 * 60 * 60
-        maxAge: 500 * 60 * 60 * 10
+        maxAge: 500 * 60 * 60 * 10 * 240000
     },
     store
 }))
