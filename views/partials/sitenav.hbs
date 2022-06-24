@@ -16,9 +16,10 @@
                         {{!-- <a href="/gallery" class="nav-item nav-link {{#if isGallery}} active {{/if}}">Gallery</a> --}}
                         <div class="nav-item dropdown">
                             {{!-- <a href="#" class="" data-toggle="dropdown">Pages</a> --}}
-                             <a href="" class="dropdown-toggle nav-link {{#if isGallery}} active {{/if}}">
-                             Gallereya
-                             </a>
+                        <a href="" class="dropdown-toggle nav-link {{#if isGallery}} active {{/if}}">
+                            Gallereya
+                        </a>
+                    
                             <div class="dropdown-menu rounded-0 m-0">
                                 {{#each menu}}
                                 <a href="/gallery/{{_id}}" class="dropdown-item">{{title}}</a>
@@ -26,6 +27,7 @@
                             </div>
                         </div>
                         <a href="/contact" class="nav-item nav-link {{#if isContact}} active {{/if}}">Aloqa</a>
+                        
                 </div>
                 {{#if isUser}}
                     {{!-- {{user.payment}} --}}
@@ -33,6 +35,7 @@
                 {{else}}                
                     <button class="btn btn-primary px-4" id="auth">Kirish</button>
                 {{/if}}
+                   
             </div>
         </nav>
     </div>

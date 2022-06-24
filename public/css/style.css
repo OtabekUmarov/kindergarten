@@ -10160,3 +10160,11 @@ iframe {
   height: 100%;
   object-fit: cover;
 }
+.apk {
+  display: block;
+  width: 200px;
+  margin-top: 20px;
+}
+.apk img {
+  width: 100%;
+}
